@@ -65,7 +65,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
             return Swal.fire({
                 icon: 'error',
                 title: 'Error!',
-                text: 'you should type a good phone number.',
+                text: 'Check phone number.',
                 showConfirmButton: true
             });
         }

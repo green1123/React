@@ -28,7 +28,6 @@ function Dashboard() {
     }, [currentPage]);
 
     const gopage = (p) => {
-        console.log("------>>>>gopage()")
         setCurrentPage(p)
     }
 
