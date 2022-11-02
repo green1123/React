@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect,useState } from 'react'
 import Swal from 'sweetalert2';
 
 import Header from './Header';
@@ -14,6 +14,24 @@ function Dashboard() {
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const defulatPageNum = 3;
+    const allPageNum = employeesData.length / defulatPageNum + (employeesData.length % 3 == 0 ? 0 : 1);
+
+
+    useEffect(() => {
+
+       let  rangeleft = (currentPage - 1) * defulatPageNum;
+       let  rangeright = currentPage * defulatPageNum;
+
+        setEmployees(employeesData.slice(rangeleft,rangeright))
+    }, [currentPage]);
+
+    const gopage = (p) => {
+        console.log("------>>>>gopage()")
+        setCurrentPage(p)
+    }
+
 
     const handleEdit = (id) => {
         const [employee] = employees.filter(employee => employee.id === id);
@@ -60,6 +78,10 @@ function Dashboard() {
                         employees={employees}
                         handleEdit={handleEdit}
                         handleDelete={handleDelete}
+                        gopage={gopage}
+                        allPageNum={allPageNum}
+                        currentPage={currentPage}
+                        
                     />
                 </>
             )}

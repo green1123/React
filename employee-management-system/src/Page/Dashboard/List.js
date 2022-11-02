@@ -1,6 +1,6 @@
 import React from 'react'
 
-function List({ employees, handleEdit, handleDelete }) {
+function List({ employees, handleEdit, handleDelete ,gopage,allPageNum,currentPage}) {
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -61,6 +61,17 @@ function List({ employees, handleEdit, handleDelete }) {
                     )}
                 </tbody>
             </table>
+         
+            {
+
+                Array.from({length: allPageNum}, (v, i) => 
+                    
+                        <a href="/#" onClick={() => gopage(i + 1)}> {i + 1}</a>   
+                  
+                )
+            
+            }        
+                          
         </div>
     )
 }
