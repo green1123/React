@@ -4,6 +4,7 @@ const employeesData = [
     firstName: 'Susan',
     lastName: 'Jordon',
     email: 'susan@example.com',
+    phone: '08059883862',
     salary: '95000',
     date: '2019-04-11'
   },
@@ -12,6 +13,7 @@ const employeesData = [
     firstName: 'Adrienne',
     lastName: 'Doak',
     email: 'adrienne@example.com',
+    phone: '08059883862',
     salary: '80000',
     date: '2019-04-17'
   },
@@ -20,6 +22,7 @@ const employeesData = [
     firstName: 'Rolf',
     lastName: 'Hegdal',
     email: 'rolf@example.com',
+    phone: '08059883862',
     salary: '79000',
     date: '2019-05-01'
   },
@@ -28,6 +31,7 @@ const employeesData = [
     firstName: 'Kent',
     lastName: 'Rosner',
     email: 'kent@example.com',
+    phone: '08059883862',
     salary: '56000',
     date: '2019-05-03'
   },
@@ -36,6 +40,7 @@ const employeesData = [
     firstName: 'Arsenio',
     lastName: 'Grant',
     email: 'arsenio@example.com',
+    phone: '08059883862',
     salary: '65000',
     date: '2019-06-13'
   },
@@ -44,6 +49,7 @@ const employeesData = [
     firstName: 'Laurena',
     lastName: 'Lurie',
     email: 'laurena@example.com',
+    phone: '08059883862',
     salary: '120000',
     date: '2019-07-30'
   },
@@ -52,6 +58,7 @@ const employeesData = [
     firstName: 'George',
     lastName: 'Tallman',
     email: 'george@example.com',
+    phone: '08059883862',
     salary: '90000',
     date: '2019-08-15'
   },
@@ -60,6 +67,7 @@ const employeesData = [
     firstName: 'Jesica',
     lastName: 'Watlington',
     email: 'jesica@example.com',
+    phone: '08059883862',
     salary: '60000',
     date: '2019-10-10'
   },
@@ -68,6 +76,7 @@ const employeesData = [
     firstName: 'Matthew',
     lastName: 'Warren',
     email: 'matthew@example.com',
+    phone: '08059883862',
     salary: '71000',
     date: '2019-10-15'
   },
@@ -76,6 +85,7 @@ const employeesData = [
     firstName: 'Lyndsey',
     lastName: 'Follette',
     email: 'lyndsey@example.com',
+    phone: '08059883862',
     salary: '110000',
     date: '2020-01-15'
   }

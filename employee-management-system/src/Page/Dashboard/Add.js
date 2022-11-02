@@ -6,6 +6,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [salary, setSalary] = useState('');
     const [date, setDate] = useState('');
 
@@ -15,13 +16,56 @@ function Add({ employees, setEmployees, setIsAdding }) {
         textInput.current.focus();
     }, [])
 
+    const telCheck = (regexp) => {
+
+        return regexp.test(phone)
+    
+      }
+    
+      const checkPhone = () => {
+    
+        let flg = false
+    
+        flg = telCheck(/^0(\d-\d{4}|\d{2}-\d{3}|\d{3}-\d{2}|\d{4}-\d)-\d{4}$/);
+    
+        if(flg) { return true}
+    
+        flg = telCheck( /^(050|070|080|090)-\d{4}-\d{4}$/);
+    
+        if(flg) { return true }
+    
+        flg = telCheck(/^0120-\d{3}-\d{3}$/);
+    
+        if(flg) { return true}
+
+        flg = telCheck(/^0\d{9,10}$/);
+    
+        if(flg) { return true}
+
+        
+    
+        return flg
+    
+      }
+
     const handleAdd = e => {
         e.preventDefault();
-        if (!firstName || !lastName || !email || !salary || !date) {
+        if (!firstName || !lastName || !email || !salary || !date || !phone) {
             return Swal.fire({
                 icon: 'error',
                 title: 'Error!',
                 text: 'All fields are required.',
+                showConfirmButton: true
+            });
+        }
+
+        //phone vailete
+
+        if(!checkPhone()){
+            return Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'you should type a good phone number.',
                 showConfirmButton: true
             });
         }
@@ -77,6 +121,14 @@ function Add({ employees, setEmployees, setIsAdding }) {
                     name="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
+                />
+                <label htmlFor="phone">phone</label>
+                <input
+                    id="phone"
+                    type="text"
+                    name="phone"
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
                 />
                 <label htmlFor="salary">Salary ($)</label>
                 <input
