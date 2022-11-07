@@ -1,6 +1,6 @@
 import React from 'react'
 
-function List({ employees, handleEdit, handleDelete ,gopage,allPageNum,currentPage}) {
+function List({ employees, handleEdit, handleDelete, gopage, allPageNum, currentPage}) {
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -56,7 +56,7 @@ function List({ employees, handleEdit, handleDelete ,gopage,allPageNum,currentPa
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={7}>No Employees</td>
+                            <td colSpan={8}>No Employees</td>
                         </tr>
                     )}
                 </tbody>

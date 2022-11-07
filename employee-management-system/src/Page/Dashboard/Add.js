@@ -10,7 +10,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
     const [salary, setSalary] = useState('');
     const [date, setDate] = useState('');
 
-    const textInput = useRef(null);
+    const textInput = useRedf(null);
 
     useEffect(() => {
         textInput.current.focus();
@@ -76,6 +76,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
             firstName,
             lastName,
             email,
+            phone,
             salary,
             date
         }

@@ -1,9 +1,12 @@
+//以下皆為導入資料
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+//顯示function App
 ReactDOM.render(
   <React.StrictMode>
     <App />

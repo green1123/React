@@ -1,15 +1,22 @@
+//導入React,
+//useState 會回傳一個包含兩個值的 array，第一個值是 state、第二個值是用來更新 state 的函式。
+//useEffect 有兩個參數，第一個參數是 Effect function，第二個則是 depandancy array。
 import React, { useEffect,useState } from 'react'
+//導入Swal
 import Swal from 'sweetalert2';
-
+//導入Header
 import Header from './Header';
+//導入List
 import List from './List';
+//導入Add
 import Add from './Add';
+//導入Edit
 import Edit from './Edit';
-
+//導入employeesDate
 import { employeesData } from '../../data';
 
 function Dashboard() {
-
+    //useState,employees為初始值使用setEmployees修改後將新值儲存在employeesData
     const [employees, setEmployees] = useState(employeesData);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [isAdding, setIsAdding] = useState(false);
@@ -18,7 +25,7 @@ function Dashboard() {
     const defulatPageNum = 3;
     const allPageNum = employeesData.length / defulatPageNum + (employeesData.length % 3 == 0 ? 0 : 1);
 
-
+    //
     useEffect(() => {
 
        let  rangeleft = (currentPage - 1) * defulatPageNum;
