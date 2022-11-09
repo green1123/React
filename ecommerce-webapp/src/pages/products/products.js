@@ -25,28 +25,55 @@ const Products = () => {
             const products = searchQuery ? await FakeStoreApi.fetchProductsBySearchQuery(searchQuery) : await FakeStoreApi.fetchAllProducts();
 
             //若sortType等於price就照續排列
-            if (sortType === "price") { //按價格排序
-                products.sort(function (a, b) {
-                    //比較數值大小
-                    return a.price - b.price;
-                })
-            } else if (sortType === "category") { //按種類排序
-                products.sort(function (a, b) {
-                    if (a.category > b.category) {
-                        return -1
-                    } else return 0;
-                })
-            } else {
-                products.sort(function (a, b) { //按評價排序
-                    return a.rating.rate - b.rating.rate
-                })
+            //按價格排序
+            if (sortType === "price") {
+                if (isPrice) {
+                    products.sort(function (a, b) {
+                        //比較數值大小
+                        return a.price - b.price;
+                    })
+                } else {
+                    products.sort(function (a, b) {
+                        //比較數值大小
+                        return b.price - a.price;
+                    })
+                }
+            }
+            //按種類排序
+            else if (sortType === "category") {
+                if (isCategory) {
+                    products.sort(function (a, b) {
+                        if (a.category > b.category) {
+                            return -1
+                        } else return 0;
+                    })
+                } else {
+                    products.sort(function (a, b) {
+                        if (b.category > a.category) {
+                            return -1
+                        }
+                    })
+                }
+            }
+            //按評價排序
+            else {
+                if (isRating) {
+                    products.sort(function (a, b) {
+                        return a.rating.rate - b.rating.rate
+                    })
+                } else {
+                    products.sort(function (a, b) {
+                        return b.rating.rate - a.rating.rate
+                    })
+                }
             }
 
             setProducts(products);
             setLoading(false)
         }
         fetchProducts().catch(console.error)
-    }, [sortType, searchQuery])
+        //若以下參數變更則上述代碼會跑一次
+    }, [sortType, searchQuery, isPrice, isCategory, isRating])
 
     if (!loading && searchQuery && !products.length) {
         return (
