@@ -7,7 +7,6 @@ import { Cart } from "./pages/cart"
 import { NotFound } from "./pages/not-found"
 
 import { useCart } from './context/cart'
-
 function App() {
 
   const navigate = useNavigate();

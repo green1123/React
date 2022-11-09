@@ -18,14 +18,18 @@ import { employeesData } from '../../data';
 function Dashboard() {
     //useState,employees為初始值使用setEmployees修改後將新值儲存在employeesData
     const [employees, setEmployees] = useState(employeesData);
+    //修改人員資料時調用
     const [selectedEmployee, setSelectedEmployee] = useState(null);
+    //增加人員資料
     const [isAdding, setIsAdding] = useState(false);
+    //編輯人員資料
     const [isEditing, setIsEditing] = useState(false);
+    //翻頁
     const [currentPage, setCurrentPage] = useState(1);
     const defulatPageNum = 3;
     const allPageNum = employeesData.length / defulatPageNum + (employeesData.length % 3 == 0 ? 0 : 1);
 
-    //
+    //currentPage只要做動即刷新
     useEffect(() => {
 
        let  rangeleft = (currentPage - 1) * defulatPageNum;
