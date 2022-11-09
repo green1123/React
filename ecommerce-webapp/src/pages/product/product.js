@@ -4,11 +4,13 @@ import { FakeStoreApi } from '../../services/fake-store-api'
 import { Link, useParams } from "react-router-dom"
 import { useCart } from "../../context/cart"
 
+
 const Product = () => {
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState();
     const { productId } = useParams();
     const { addToCart } = useCart()
+
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -19,6 +21,7 @@ const Product = () => {
         }
         fetchProduct().catch(console.error)
     }, [productId])
+
 
     if (!loading && !product) {
         return (
@@ -53,6 +56,10 @@ const Product = () => {
                                 <p className=" my-2">{product.description}</p>
                             </div>
                             <div className="flex">
+                                <div>
+
+                                    <span className="price">${product.price}</span>
+                                </div>
                                 <span className="price">${product.price}</span>
                                 <span className="cart" onClick={() => addToCart(product)}>
                                     <img src="/cart.svg" alt="" />
