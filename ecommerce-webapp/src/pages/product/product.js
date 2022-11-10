@@ -73,15 +73,16 @@ const Product = () => {
                             <div className="flex">
                                 {product.disCount === 1 ? (
                                     <div>
-                                        <span className="price">${product.price}</span>
+                                        <span className="price">Price:${product.price}</span>
                                     </div>
                                 ) : (
                                     <div>
-                                        <span className="price" style={{ color: "red", "textDecoration": "line-through" }}>
-                                            ${product.price}
+                                        <span className="price">Price:</span>
+                                        <span className="price" style={{ color: "red", "textDecoration": "line-through" }}>$
+                                        {product.price}
                                         </span>
                                         &emsp;&emsp;&emsp;
-                                        <span className="price">${(product.price * product.disCount).toFixed(2)}</span>
+                                        <span className="price" style={{ color: "green"}}>${(product.price * product.disCount).toFixed(2)}</span>
                                     </div>
                                 )}
                                 <span className="cart" onClick={() => addToCart(product)}>

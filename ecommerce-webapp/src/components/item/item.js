@@ -20,16 +20,19 @@ const Item = ({ data, addToCart }) => {
                     {discount === 1 ? (
                         <div>
                             <span className="price" style={{ marginRight: 15 }}>&emsp;
-                                ${price}
+                            Price:${price}
                             </span>
                         </div>
                     ) : (
                         <div>
+                            <span className="price" >&emsp;
+                            Price:
+                            </span>
                             <span className="price" style={{ marginRight: 15, color:"red", "textDecoration":"line-through"}}>
                                 ${price}
                             </span>
-                            <span className="price" style={{ marginRight: 15 }}>
-                            &emsp;&emsp;${discountprice}
+                            <span className="price" style={{ marginRight: 15, color:"green" }}>
+                                ${discountprice}
                             </span>
                         </div>
                     )}
