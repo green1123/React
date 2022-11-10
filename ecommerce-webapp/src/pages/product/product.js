@@ -10,14 +10,29 @@ const Product = () => {
     const [product, setProduct] = useState();
     const { productId } = useParams();
     const { addToCart } = useCart()
-
+    // 問題～～～～～～～～～～～～～～～～～～～
+    // const discountprice = (product.price * product.disCount).toFixed(2)
+    // const [discountprice, setDiscountprice] = useState();
 
     useEffect(() => {
         const fetchProduct = async () => {
             setLoading(true);
             const product = await FakeStoreApi.fetchProductById(productId);
+
+
+                if (product.price < 100) {
+                    product.disCount = 1;
+                } else if (product.price < 200) {
+                    product.disCount = 0.9;
+                } else {
+                    product.disCount = 0.8;
+                }
+
+            // // }
+
             setProduct(product);
             setLoading(false);
+            // setDiscountprice(product.price * product.disCount).toFixed(2);
         }
         fetchProduct().catch(console.error)
     }, [productId])
@@ -56,11 +71,19 @@ const Product = () => {
                                 <p className=" my-2">{product.description}</p>
                             </div>
                             <div className="flex">
-                                <div>
-
-                                    <span className="price">${product.price}</span>
-                                </div>
-                                <span className="price">${product.price}</span>
+                                {product.disCount === 1 ? (
+                                    <div>
+                                        <span className="price">${product.price}</span>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <span className="price" style={{ color: "red", "textDecoration": "line-through" }}>
+                                            ${product.price}
+                                        </span>
+                                        &emsp;&emsp;&emsp;
+                                        <span className="price">${(product.price * product.disCount).toFixed(2)}</span>
+                                    </div>
+                                )}
                                 <span className="cart" onClick={() => addToCart(product)}>
                                     <img src="/cart.svg" alt="" />
                                 </span>

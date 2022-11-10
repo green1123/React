@@ -4,11 +4,16 @@ import "./cart.css"
 
 const SHIPPING_CHARGES = 25
 
+
 const Cart = () => {
     const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart()
 
-    const cartTotal = () => {
+    const cartTotal1 = () => {
         return cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+    }
+
+    const cartTotal = () => {
+        return cart.reduce((acc, item) => acc + (item.product.price * item.product.discount).toFixed(2) * item.quantity, 0)
     }
 
     const round = (value, decimals) => {
@@ -34,8 +39,19 @@ const Cart = () => {
                                                     {item.product.title}
                                                 </Link>
                                             </div>
-                                            <span className="price">${round(item.product.price * item.quantity, 2)}</span>
-                                            {/* <div className="remove">Remove</div> */}
+                                            {item.product.discount === 1 ? (
+                                                <div>
+                                                    <span className="price">${round(item.product.price * item.quantity, 2)}</span>
+                                                </div>
+                                            ) : (
+                                                <div>
+                                                    <span className="price" style={{ color: "red", "textDecoration": "line-through" }}>
+                                                        ${round(item.product.price * item.quantity, 2)}</span>
+                                                    &emsp;&emsp;
+                                                    {/* <div className="remove">Remove</div> */}
+                                                    <span className="price">${(item.product.price * item.product.discount).toFixed(2)}</span>
+                                                </div>
+                                            )}
                                         </div>
                                         <div className="itemControl flex">
                                             <div>
@@ -70,6 +86,7 @@ const Cart = () => {
                             <div className="summary py-3 my-2">
                                 <div className="flex py-1">
                                     <span>Subtotal:</span>
+                                    <span className="price" style={{ color: "red", "textDecoration": "line-through" }}>${(round(cartTotal1(), 2)-round(cartTotal(), 2)).toFixed(2)}</span>
                                     <span className="price">${round(cartTotal(), 2)}</span>
                                 </div>
                                 <div className="flex py-1">
