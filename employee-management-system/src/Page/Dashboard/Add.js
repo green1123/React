@@ -70,7 +70,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
             });
         }
 
-        const id = employees.length + 1;
+        const id = employees[employees.length - 1].id + 1;
         const newEmployee = {
             id,
             firstName,

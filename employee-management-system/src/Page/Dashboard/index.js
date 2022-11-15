@@ -15,9 +15,15 @@ import Edit from './Edit';
 //導入employeesDate
 import { employeesData } from '../../data';
 
+//創建storage將window.localStorage儲存
+const storage = window.localStorage;
+//創建data將employees儲存，若已有資料則更新(包含JSON轉換)
+const data = storage.getItem("employees") ? JSON.parse(storage.getItem("employees")) : [];
+
 function Dashboard() {
-    //useState,employees為初始值使用setEmployees修改後將新值儲存在employeesData
-    const [employees, setEmployees] = useState(employeesData);
+    //useState,employeesData為初始值使用setEmployees修改後將新值儲存在employees
+    const [employees, setEmployees] = useState(data);
+    const [employeedata, setEmployeedata] = useState([]);
     //修改人員資料時調用
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     //增加人員資料
@@ -29,14 +35,21 @@ function Dashboard() {
     const defulatPageNum = 3;
     const allPageNum = employeesData.length / defulatPageNum + (employeesData.length % 3 == 0 ? 0 : 1);
 
-    //currentPage只要做動即刷新
+
     useEffect(() => {
 
        let  rangeleft = (currentPage - 1) * defulatPageNum;
        let  rangeright = currentPage * defulatPageNum;
+        //從employees取出資料存儲於setEmployeedata
+       setEmployeedata(employees.slice(rangeleft,rangeright))
+       //偵測以下變量如果更改及刷新以上代碼
+    }, [currentPage, employees, isAdding, isEditing]);
 
-        setEmployees(employeesData.slice(rangeleft,rangeright))
-    }, [currentPage]);
+    useEffect(() => {
+        //將資料存進storage內
+        storage.setItem("employees", JSON.stringify(employees))
+    }, [employeedata, isAdding, isEditing]);
+    
 
     const gopage = (p) => {
         setCurrentPage(p)
@@ -85,7 +98,7 @@ function Dashboard() {
                         setIsAdding={setIsAdding}
                     />
                     <List
-                        employees={employees}
+                        employees={employeedata}
                         handleEdit={handleEdit}
                         handleDelete={handleDelete}
                         gopage={gopage}
